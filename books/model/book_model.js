@@ -2,15 +2,35 @@ let mongoose = require('mongoose')
 let validator = require('validator')
 mongoose.pluralize(null);              // removing s from all collection 
 let emailSchema = new mongoose.Schema({
-  email: {
+  publisher: {
+    type: String,
+    required: true
+    
+   
+  },
+
+  title: {
     type: String,
     required: true,
-    unique: true,
+    
+    lowercase: true
+    
+  },
+  author: {
+    type: String,
+    required: true,
+    
     lowercase: true,
-    validate: (value) => {
-      return validator.isEmail(value)
-    }
+    
+  },
+  NumberPages: {
+    type: String,
+    required: true,
+    
+    lowercase: true
+    
+    
   }
 })
 
-module.exports = mongoose.model('Email', emailSchema)
+module.exports = mongoose.model('Books', emailSchema)

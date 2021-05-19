@@ -4,7 +4,7 @@ const mongoose=require('mongoose')
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-mongoose.connect("mongodb+srv://root:admin@cluster0.cojym.mongodb.net", {useNewUrlParser: true, useUnifiedTopology: true},   () =>
+mongoose.connect("mongodb+srv://root:admin@cluster0.cojym.mongodb.net/first-db", {useNewUrlParser: true, useUnifiedTopology: true},   () =>
 {
 console.log("data base connected")
 })
@@ -31,6 +31,21 @@ app.post('/', async (req, res) =>
         console.log(e);
     }
     res.send("posted data")
+})
+
+app.get('/Book/:id', async (req, res) => 
+{
+    let id=req.params.id;
+    try{
+    let book=await EmailModel.findById(id)
+    console.log(book);
+    res.json(book)
+    }
+    catch(e)
+    {
+        console.log(e)
+    }
+    
 })
 
 app.listen(3000, () =>
